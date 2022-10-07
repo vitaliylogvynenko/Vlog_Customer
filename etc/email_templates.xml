@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Vitalii Lohvynenko
+ * @copyright Copyright (c) 2021 Vitalii Lohvynenko
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="vlog_customer_create_account_email_template"
+              label="New Customer Account"
+              file="new_customer_account.html"
+              type="html"
+              module="Vlog_Customer"
+              area="adminhtml"
+    />
+</config>

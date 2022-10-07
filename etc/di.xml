@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Vitalii Lohvynenko
+ * @copyright Copyright (c) 2021 Vitalii Lohvynenko
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Vlog\Customer\Model\Method\Info" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/vlog-customer.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vlog\Customer\Model\Method\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="info" xsi:type="object">Vlog\Customer\Model\Method\Info</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Customer\Api\AccountManagementInterface">
+        <plugin name="VlogCustomerAccountManagerInterface"
+                type="Vlog\Customer\Plugin\Magento\Customer\Api\AccountManagementInterfacePlugin"/>
+    </type>
+    <type name="Vlog\Customer\Plugin\Magento\Customer\Api\AccountManagementInterfacePlugin">
+        <arguments>
+            <argument name="logger" xsi:type="object">Vlog\Customer\Model\Method\Logger</argument>
+        </arguments>
+    </type>
+</config>
